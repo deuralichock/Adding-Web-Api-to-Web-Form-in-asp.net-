@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/angular-resource.js"></script>
+    <script src="../Scripts/StockMarketApp/app.js"></script>
+    <script src="../Scripts/StockMarketApp/dailyStockMarketService.js"></script>
+    <script src="../Scripts/StockMarketApp/dailyStockMarketController.js"></script>
+    <script src="../Scripts/angular-ui/ui-bootstrap.js"></script>
+
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+
+
+    <style type="text/css">
+
+        .operationActionMessage {
+
+            background-color:green;
+            width:100%;
+            height:20%;
+            position:absolute;
+            left:50%;
+            top:0%;
+            z-index:10000;
+            border:solid 1px#4cff00;
+            color:white;
+            font-family:Verdana;
+            font-size:12px;
+        }
+
+    </style>
+
+</head>
+<body ng-app="stockMarketApplication">
+
+   
+        <div style="margin-left:1%;  margin-top:1%">
+            <div ng-controller="stockMarketController">
+
+                <div class="col-md-4">
+                    <div 
+                         class="operationActionMessage"
+                         id="divStatusContainer" 
+                         ng-show="onSuccessfulSubmit" 
+                        >
+                        <span style="color:white;">{{message}}</span>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Select Stock Name :
+                        </div>
+                        <div class="col-md-5">
+                            <select id="selectPasConsumer"
+                                    ng-model="currentStock" class="form-control">
+
+                                <option ng-repeat="stockType in stockTypes"
+                                        value="{{stockType.Name}}">
+
+                                    {{stockType.Name}}
+
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-3"> Closing Market Value : </div>
+                        <div class="col-md-5"><input type="text" name="currentMarketValue" id="currentMarketValue" ng-model="currentMarketValue" class="form-control"></div>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="row">
+                        <div class="col-md-3">   Market Up/Down Value:</div>
+
+                        <div class="col-md-2">
+                            <select id="ddlMarketUpDownSymbol"
+                                    ng-model="currentSymbol"
+                                    class="form-control">
+
+                                <option ng-repeat="updownSymbol in marketUpDownSymbols"
+                                        value="{{updownSymbol.Value}}">
+
+                                    {{updownSymbol.Value}}
+
+                                </option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <input type="text" name="currentMarketUpOrDownValue"
+                                   id="currentMarketUpOrDownValue"
+                                   ng-model="marketUpOrDownValue"
+                                   class="form-control">
+
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="row" style="padding-left:20%">
+                        <div class="col-md-7">
+                        <button class="btn-info" id="btnSubmit" ng-click="addStockMarketDaily()">Add Stock Market Daily</button></div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+
+                    <table class="table table-responsive table-hover table-striped">
+
+                        <tr>
+                            <td>Stock Closing Value</td>
+                            <td>Stock Name</td>
+                            <td>Stock Up Or Down</td>
+                            <td>Stock Up Or Down Value</td>
+                            <td>Date</td>
+                            <td>Actions</td>
+                        </tr>
+                        <tr ng-repeat="StockMarketDaily in StockMarketDailys">
+                            <td>{{StockMarketDaily.StockClosingValue}}</td>
+                            <td>{{StockMarketDaily.StockName}}</td>
+                            <td>{{StockMarketDaily.StockUpOrDownSymbol}}</td>
+                            <td>{{StockMarketDaily.StockUpOrDownValue}}</td>
+                            <td>{{StockMarketDaily.CreatedDate}}</td>
+                            <td>
+
+                                <button id="btnEdit"
+                                        name="btnEdit"
+                                        class="btn-info"
+                                        style="width:50%"
+                                        ng-click="EditStockMarketDaily(StockMarketDaily)">
+                                    Edit
+                                </button>
+                                <button id="btnDelete"
+                                        name="btnDelete"
+                                        class="btn-danger"
+                                        ng-click="DeleteStockMarketDaily(StockMarketDaily)">
+
+
+                                    Delete
+                                </button>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
+
+                </div>
+               
+                
+        </div>
+        
+</body>
+
+</html>

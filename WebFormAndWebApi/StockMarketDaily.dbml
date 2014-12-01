@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StockMarket" Class="StockMarketDailyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=samarina-pc;Initial Catalog=StockMarket;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StockMarketConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.stockMarketDaily" Member="stockMarketDailies">
+    <Type Name="stockMarketDaily">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StockClosingValue" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="StockUpOrDownSymbol" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="StockUpOrDownValue" Type="System.Decimal" DbType="Decimal(10,4) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
