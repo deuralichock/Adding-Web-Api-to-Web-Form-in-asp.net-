@@ -7,5 +7,8 @@ namespace WebFormAndWebApi
 {
     public class HowStuffWork
     {
+        public HowStuffWork()
+        {
+        }
     }
 }
